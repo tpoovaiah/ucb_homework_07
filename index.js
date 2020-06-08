@@ -64,61 +64,58 @@ function promptUser() {
 ])
 }
 
-function generateReadMe(answers){
+function generateMarkdown(answers){
     return `
-    README.md
+# ${answers.title}
+![badge](https://img.shields.io/github/languages/top/${answers.username}/${answers.repo})
 
-    *[Title](#title)
-    *[Description](#description)
-    *[Installation](#installation)
-    *[Useage](#useage)
-    *[License](#license)
-    *[Contributing](#contributing)
-    *[Tests](#tests)
-    *[GitHub](#github)
+## Project Description 
 
-    ## Project Title 
-    
-    ${answers.title}
-    
-    ## Project Description 
-    
-    ${answers.description}
+${answers.description}
 
-    ## Installation: 
-    
-    ${answers.installation}
+## Table of Contents
 
-    ## Useage 
-    
-    ${answers.useage}
+* [Installation](#installation)
+* [Useage](#useage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [GitHub](#github)
 
-    ## License 
-    
-    ${answers.license}
+## Installation
 
-    ## Contributing 
-    
-    ${answers.contributing}
+${answers.installation}
 
-    ## Tests 
-    
-    ${answers.tests}
+## Useage 
 
-    ## GitHub 
-    
-    Picture: ${answers.picture}
-    Username: ${answers.username}
-    Email: ${answers.email}
-    Badge: https://img.shields.io/github/languages/top/${answers.username}/${answers.repo}
+${answers.useage}
 
-    `
+## License 
+
+${answers.license}
+
+## Contributing 
+
+${answers.contributing}
+
+## Tests 
+
+${answers.tests}
+
+## GitHub 
+
+![${answers.username}](${answers.picture})  
+
+Username: ${answers.username}  
+Email: <${answers.email}>
+
+`
 }
 
 promptUser()
 .then(function(answers){
-    const readMe = generateReadMe(answers);
-    return writeFileAsync("README.md", readMe);
+    const markdown = generateMarkdown(answers);
+    return writeFileAsync("README.md", markdown);
 })
 .then(function(){
     console.log("Successfully wrote to README.md")
@@ -128,4 +125,3 @@ promptUser()
 });
 
 
-//https://img.shields.io/github/languages/top/tpoovaiah/ucb_homework_02
